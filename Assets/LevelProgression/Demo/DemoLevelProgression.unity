@@ -858,6 +858,7 @@ MonoBehaviour:
   m_XPType: {fileID: 11400000, guid: cb9b45752e99b4942ab9a3153f95feb6, type: 2}
   m_Manager: {fileID: 11400000, guid: a51f6d704c2d752478786b928a41d38f, type: 2}
   m_Descriptor: {fileID: 11400000, guid: 6c2f4cee699cc034e8ffc77d7e12c9d1, type: 2}
+  m_SkillDescriptor: {fileID: 11400000, guid: d696041603a5ea9499361fa56037f43f, type: 2}
   m_Image: {fileID: 1634552159}
   m_XPText: {fileID: 568782887}
   m_LevelText: {fileID: 2095351883}

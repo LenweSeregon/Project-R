@@ -1,3 +1,4 @@
+using com.CompanyR.FrameworkR.ProgressSystem;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,6 +10,7 @@ public class DemoAddXP : MonoBehaviour
 	[SerializeField] private XPType m_XPType;
 	[SerializeField] private LevelsManager m_Manager;
 	[SerializeField] private LevelDescriptor m_Descriptor;
+	[SerializeField] private SkillLevelDescriptor m_SkillDescriptor;
 	private LevelController m_Controller;
 
 	[SerializeField] private Image m_Image;

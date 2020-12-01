@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e30c843dd4c96ba44823ae4499bf5121, type: 3}
+  m_Name: DefensiveTree
+  m_EditorClassIdentifier: 
+  m_TreeTiers:
+  - m_Elements:
+    - {fileID: 11400000, guid: ec6146025a50eaa4ea4c22a8c052dda7, type: 2}
+    - {fileID: 11400000, guid: 3cb18e743fa125247a573db0a9e3d5c1, type: 2}
+    - {fileID: 11400000, guid: 347b7930907b04744b6bfc7091a6f7fb, type: 2}
+  - m_Elements:
+    - {fileID: 11400000, guid: 4ee19e3106d646842856040d0856bc8b, type: 2}
