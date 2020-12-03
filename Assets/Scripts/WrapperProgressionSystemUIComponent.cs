@@ -6,6 +6,17 @@ using UnityEngine.UI;
 
 public class WrapperProgressionSystemUIComponent
 {
+	public static void InitLevel(UILevel uiLevel, LevelController controller)
+	{
+		uiLevel.TitleText.text = controller.Descriptor.Type.Value;
+	}
+
+	public static void UpdateLevel(UILevel uiLevel, LevelController controller)
+	{
+		uiLevel.UpdateLevel(controller);
+		controller.Level = uiLevel;
+	}
+
 	public static void InitTree(UITree uiTree, XPTree tree)
 	{
 		uiTree.Background.sprite = tree.Descriptor.Background;
@@ -36,7 +47,10 @@ public class WrapperProgressionSystemUIComponent
 		{
 			uiElement.Overlay.sprite = descriptor.LockedSprite;
 		}
-		uiElement.UnlockButton.onClick.AddListener(() => element.OnActionReceived(descriptor));
-		element.Element = uiElement;
+		if (element.Element == null)
+		{
+			uiElement.UnlockButton.onClick.AddListener(() => element.OnActionReceived(descriptor));
+			element.Element = uiElement;
+		}
 	}
 }

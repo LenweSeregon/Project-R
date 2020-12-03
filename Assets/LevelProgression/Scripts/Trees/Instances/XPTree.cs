@@ -6,18 +6,19 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 
 	public class XPTree
 	{
+		private SkillLevelController m_Controller;
 		private XPTreeDescriptor m_Descriptor;
 		private List<XPTreeTier> m_Tiers = new List<XPTreeTier>();
 		private List<XPTreeElement> m_UnlockedElements = new List<XPTreeElement>();
-		private int m_Points = 0;
 
 		public XPTreeDescriptor Descriptor => m_Descriptor;
 		public List<XPTreeTier> Tiers => m_Tiers;
 		public List<XPTreeElement> UnlockedElements => m_UnlockedElements;
-		public int Points => m_Points;
+		public SkillLevelController Controller => m_Controller;
 
-		public XPTree(XPTreeDescriptor descriptor)
+		public XPTree(XPTreeDescriptor descriptor, SkillLevelController controller)
 		{
+			m_Controller = controller;
 			m_Descriptor = descriptor;
 			foreach (XPTreeTierDescriptor tierDescriptor in descriptor.Tiers)
 			{
@@ -43,7 +44,7 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 
 		public void SetPoints(int value)
 		{
-			m_Points += value;
+			m_Controller.Points += value;
 		}
 	}
 }

@@ -9,14 +9,18 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 		protected int m_NbPoints = 0;
 		protected List<XPTree> m_Trees = new List<XPTree>();
 
-		public int Points => m_NbPoints;
+		public int Points
+		{
+			get => m_NbPoints;
+			set => m_NbPoints = value;
+		}
 		public List<XPTree> Trees => m_Trees;
 
 		public SkillLevelController(SkillLevelDescriptor descriptor) : base(descriptor)
 		{
 			foreach (XPTreeDescriptor tree in ((SkillLevelDescriptor)m_LevelDescriptor).Trees)
 			{
-				m_Trees.Add(new XPTree(tree));
+				m_Trees.Add(new XPTree(tree, this));
 			}
 		}
 

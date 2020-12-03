@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class DemoAddXPTree : DemoAddXP
 {
-	[SerializeField] private TextMeshProUGUI m_PointsText;
 	[SerializeField] private XPTreeBuilder m_TreeBuilder;
 
 	protected override void Start()
@@ -17,7 +16,7 @@ public class DemoAddXPTree : DemoAddXP
 
 	public override void AddXp(float amount)
 	{
-		base.AddXp(amount);
-		m_PointsText.text = string.Format("Points: {0}", ((SkillLevelController) m_Controller).Points);
+		m_Manager.AddXP(amount, m_XPType);
+		WrapperProgressionSystemUIComponent.UpdateLevel((UISkillLevel) m_UILevel, (SkillLevelController)m_Controller);
 	}
 }

@@ -485,7 +485,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 442297501}
         m_TargetAssemblyTypeName: DemoAddXP, Assembly-CSharp
         m_MethodName: AddXp
         m_Mode: 4
@@ -618,7 +618,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 442297501}
         m_TargetAssemblyTypeName: DemoAddXP, Assembly-CSharp
         m_MethodName: AddXp
         m_Mode: 4
@@ -760,18 +760,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 390154638}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df998323ffd6c9843a484c7da2bd5c97, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ec35863bccf8284ea929459a06f4734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_XPType: {fileID: 11400000, guid: 773586847a3ccbd4ea253695f3ae0195, type: 2}
-  m_Manager: {fileID: 11400000, guid: a51f6d704c2d752478786b928a41d38f, type: 2}
-  m_Descriptor: {fileID: 11400000, guid: d696041603a5ea9499361fa56037f43f, type: 2}
-  m_ProgressBar: {fileID: 810461170}
   m_XPText: {fileID: 298250681}
   m_LevelText: {fileID: 1788443087}
   m_TitleText: {fileID: 2100093742}
+  m_ProgressBar: {fileID: 810461170}
   m_PointsText: {fileID: 1818685252}
-  m_TreeBuilder: {fileID: 1516652509}
 --- !u!1 &411236488
 GameObject:
   m_ObjectHideFlags: 0
@@ -906,6 +902,71 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 411236488}
   m_CullTransparentMesh: 1
+--- !u!1 &442297499
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 442297502}
+  - component: {fileID: 442297501}
+  - component: {fileID: 442297500}
+  m_Layer: 0
+  m_Name: DemooAddXP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &442297500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442297499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df998323ffd6c9843a484c7da2bd5c97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_XPType: {fileID: 11400000, guid: 773586847a3ccbd4ea253695f3ae0195, type: 2}
+  m_Manager: {fileID: 11400000, guid: a51f6d704c2d752478786b928a41d38f, type: 2}
+  m_Descriptor: {fileID: 11400000, guid: d696041603a5ea9499361fa56037f43f, type: 2}
+  m_UILevel: {fileID: 390154642}
+  m_TreeBuilder: {fileID: 1516652509}
+--- !u!114 &442297501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442297499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a965786fd1e84e544a268fcce8652144, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_XPType: {fileID: 11400000, guid: cb9b45752e99b4942ab9a3153f95feb6, type: 2}
+  m_Manager: {fileID: 11400000, guid: a51f6d704c2d752478786b928a41d38f, type: 2}
+  m_Descriptor: {fileID: 11400000, guid: 6c2f4cee699cc034e8ffc77d7e12c9d1, type: 2}
+  m_UILevel: {fileID: 1491622867}
+--- !u!4 &442297502
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442297499}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 485.44794, y: 277.07654, z: -49.204563}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &461429685
 GameObject:
   m_ObjectHideFlags: 0
@@ -2212,7 +2273,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 200, y: 0}
-  m_SizeDelta: {x: 150, y: 150}
+  m_SizeDelta: {x: 125, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1003150581
 MonoBehaviour:
@@ -2258,7 +2319,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 390154642}
+      - m_Target: {fileID: 442297500}
         m_TargetAssemblyTypeName: DemoAddXPTree, Assembly-CSharp
         m_MethodName: AddXp
         m_Mode: 4
@@ -2345,7 +2406,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: -200, y: 0}
-  m_SizeDelta: {x: 150, y: 150}
+  m_SizeDelta: {x: 125, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1185005950
 MonoBehaviour:
@@ -2391,7 +2452,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 390154642}
+      - m_Target: {fileID: 442297500}
         m_TargetAssemblyTypeName: DemoAddXPTree, Assembly-CSharp
         m_MethodName: AddXp
         m_Mode: 4
@@ -2820,7 +2881,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 442297501}
         m_TargetAssemblyTypeName: DemoAddXP, Assembly-CSharp
         m_MethodName: AddXp
         m_Mode: 4
@@ -2923,16 +2984,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1491622865}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a965786fd1e84e544a268fcce8652144, type: 3}
+  m_Script: {fileID: 11500000, guid: a521b1fcca0426040ae12ec854fc13ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_XPType: {fileID: 11400000, guid: cb9b45752e99b4942ab9a3153f95feb6, type: 2}
-  m_Manager: {fileID: 11400000, guid: a51f6d704c2d752478786b928a41d38f, type: 2}
-  m_Descriptor: {fileID: 11400000, guid: 6c2f4cee699cc034e8ffc77d7e12c9d1, type: 2}
-  m_ProgressBar: {fileID: 1634552159}
   m_XPText: {fileID: 568782887}
   m_LevelText: {fileID: 2095351883}
   m_TitleText: {fileID: 1213898174}
+  m_ProgressBar: {fileID: 1634552159}
 --- !u!114 &1491622868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3335,7 +3393,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 150, y: 150}
+  m_SizeDelta: {x: 125, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1758194044
 MonoBehaviour:
@@ -3381,7 +3439,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 390154642}
+      - m_Target: {fileID: 442297500}
         m_TargetAssemblyTypeName: DemoAddXPTree, Assembly-CSharp
         m_MethodName: AddXp
         m_Mode: 4

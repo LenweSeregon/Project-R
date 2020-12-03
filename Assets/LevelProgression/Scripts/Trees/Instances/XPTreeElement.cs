@@ -47,11 +47,13 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 		{
 			m_Level = 0;
 			m_OverlayImage = descriptor.LockedSprite;
+			WrapperProgressionSystemUIComponent.InitElement(m_UIElement, this, descriptor);
+			WrapperProgressionSystemUIComponent.UpdateLevel(m_Tier.Tree.Controller.Level, m_Tier.Tree.Controller);
 		}
 
 		public void Unlock(SkillLevelDescriptor descriptor)
 		{
-			if (m_Level < m_Descriptor.MaxLevel)
+			if (m_Level < m_Descriptor.MaxLevel && m_Tier.Tree.Controller.Points >= m_Descriptor.Price)
 			{
 				if(m_Level == 0)
 				{
@@ -61,19 +63,20 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 				m_OverlayImage = descriptor.UnlockedSprite;
 				m_Tier.Tree.SetPoints(-m_Descriptor.Price);
 				WrapperProgressionSystemUIComponent.InitElement(m_UIElement, this, descriptor);
+				WrapperProgressionSystemUIComponent.UpdateLevel((UISkillLevel) m_Tier.Tree.Controller.Level, m_Tier.Tree.Controller);
 			}
 		}
 
 		public void OnActionReceived(SkillLevelDescriptor descriptor)
 		{
-			if(Input.GetMouseButtonDown(0))
-			{
+			//if(Input.GetMouseButtonDown(0))
+			//{
 				Unlock(descriptor);
-			}
-			else if(Input.GetMouseButtonDown(1))
-			{
-				Lock(descriptor);
-			}
+			//}
+			//else if(Input.GetMouseButtonDown(1))
+			//{
+			//	Lock(descriptor);
+			//}
 		}
 	}
 }

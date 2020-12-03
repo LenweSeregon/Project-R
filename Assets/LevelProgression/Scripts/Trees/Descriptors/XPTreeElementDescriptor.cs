@@ -35,7 +35,7 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 			int unlockedPrerequisites = 0;
 			List<XPTreeElement> unlockedElements = tree.UnlockedElements;
 
-			if (m_Price > tree.Points) return false;
+			if (m_Price > tree.Controller.Points) return false;
 
 			if (unlockedElements.Count >= m_NbTotalPrerequisites)
 			{

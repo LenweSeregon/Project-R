@@ -22,3 +22,5 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 2d1607c367c6e7343b63dd3036d676f0, type: 2}
   - m_Elements:
     - {fileID: 11400000, guid: a166c66d52a45a74585a28ca5fcd06b5, type: 2}
+  m_Background: {fileID: 0}
+  m_TreeName: Offensive
