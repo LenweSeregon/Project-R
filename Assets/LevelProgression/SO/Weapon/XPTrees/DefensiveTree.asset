@@ -19,3 +19,5 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 347b7930907b04744b6bfc7091a6f7fb, type: 2}
   - m_Elements:
     - {fileID: 11400000, guid: 4ee19e3106d646842856040d0856bc8b, type: 2}
+  m_Background: {fileID: 0}
+  m_Name: DefensiveTree

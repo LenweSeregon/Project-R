@@ -26,11 +26,6 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 		{
 			return new SkillLevelController(this);
 		}
-
-		public override object Clone()
-		{
-			return new SkillLevelDescriptor(this);
-		}
 	}
 
 }

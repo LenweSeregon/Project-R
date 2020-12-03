@@ -11,6 +11,7 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 		private List<XPTreeElement> m_UnlockedElements = new List<XPTreeElement>();
 		private int m_Points = 0;
 
+		public XPTreeDescriptor Descriptor => m_Descriptor;
 		public List<XPTreeTier> Tiers => m_Tiers;
 		public List<XPTreeElement> UnlockedElements => m_UnlockedElements;
 		public int Points => m_Points;

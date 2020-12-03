@@ -11,10 +11,17 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 		protected XPTreeTier m_Tier;
 		protected int m_Level = 0;
 		protected Sprite m_OverlayImage;
+		protected UIElement m_UIElement;
 
 		public XPTreeElementDescriptor Descriptor => m_Descriptor;
 		public XPTreeTier Tier => m_Tier;
 		public int Level => m_Level;
+
+		public UIElement Element
+		{
+			get => m_UIElement;
+			set => m_UIElement = value;
+		}
 
 		public XPTreeElement(XPTreeElementDescriptor descriptor, XPTreeTier tier)
 		{
@@ -53,6 +60,19 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 				m_Level++;
 				m_OverlayImage = descriptor.UnlockedSprite;
 				m_Tier.Tree.SetPoints(-m_Descriptor.Price);
+				WrapperProgressionSystemUIComponent.InitElement(m_UIElement, this, descriptor);
+			}
+		}
+
+		public void OnActionReceived(SkillLevelDescriptor descriptor)
+		{
+			if(Input.GetMouseButtonDown(0))
+			{
+				Unlock(descriptor);
+			}
+			else if(Input.GetMouseButtonDown(1))
+			{
+				Lock(descriptor);
 			}
 		}
 	}

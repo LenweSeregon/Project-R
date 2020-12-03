@@ -42,9 +42,9 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 			return new LevelController(this);
 		}
 
-		public virtual object Clone()
+		public object Clone()
 		{
-			return new LevelDescriptor(this);
+			return (LevelDescriptor) Instantiate(this);
 		}
 	}
 
