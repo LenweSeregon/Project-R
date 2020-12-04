@@ -6,7 +6,7 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 
 	public class XPTree
 	{
-		private SkillLevelController m_Controller;
+		private SkillProgressionController m_Controller;
 		private XPTreeDescriptor m_Descriptor;
 		private List<XPTreeTier> m_Tiers = new List<XPTreeTier>();
 		private List<XPTreeElement> m_UnlockedElements = new List<XPTreeElement>();
@@ -14,9 +14,9 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 		public XPTreeDescriptor Descriptor => m_Descriptor;
 		public List<XPTreeTier> Tiers => m_Tiers;
 		public List<XPTreeElement> UnlockedElements => m_UnlockedElements;
-		public SkillLevelController Controller => m_Controller;
+		public SkillProgressionController Controller => m_Controller;
 
-		public XPTree(XPTreeDescriptor descriptor, SkillLevelController controller)
+		public XPTree(XPTreeDescriptor descriptor, SkillProgressionController controller)
 		{
 			m_Controller = controller;
 			m_Descriptor = descriptor;
@@ -26,7 +26,7 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 			}
 		}
 
-		public void Reset(SkillLevelDescriptor descriptor)
+		public void Reset(SkillProgressionDescriptor descriptor)
 		{
 			foreach (XPTreeTier tier in m_Tiers)
 			{

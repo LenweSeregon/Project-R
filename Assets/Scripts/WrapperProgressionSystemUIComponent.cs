@@ -4,53 +4,59 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WrapperProgressionSystemUIComponent
+[CreateAssetMenu(fileName = "ProgressionWrapper", menuName = "Progression/Wrapper")]
+public class WrapperProgressionSystemUIComponent : ScriptableObject
 {
-	public static void InitLevel(UILevel uiLevel, LevelController controller)
+	private Dictionary<ProgressionController, UIProgression> m_Progressions = new Dictionary<ProgressionController, UIProgression>();
+	private Dictionary<XPTree, UITree> m_Trees = new Dictionary<XPTree, UITree>();
+	private Dictionary<XPTreeTier, UITier> m_Tiers = new Dictionary<XPTreeTier, UITier>();
+	private Dictionary<XPTreeElement, UIElement> m_Elements = new Dictionary<XPTreeElement, UIElement>();
+
+	public void InitProgression(UIProgression uiProgression, ProgressionController progression)
 	{
-		uiLevel.TitleText.text = controller.Descriptor.Type.Value;
+		uiProgression.InitProgression(progression);
+		m_Progressions.Add(progression, uiProgression);
 	}
 
-	public static void UpdateLevel(UILevel uiLevel, LevelController controller)
+	public void UpdateProgression(ProgressionController progression)
 	{
-		uiLevel.UpdateLevel(controller);
-		controller.Level = uiLevel;
+		UIProgression uiProgression = m_Progressions[progression];
+		uiProgression.UpdateProgression(progression);
 	}
 
-	public static void InitTree(UITree uiTree, XPTree tree)
+	public void InitTree(UITree uiTree, XPTree tree)
 	{
-		uiTree.Background.sprite = tree.Descriptor.Background;
-		uiTree.Title.text = tree.Descriptor.TreeName;
+		uiTree.UpdateTree(tree);
+		m_Trees.Add(tree, uiTree);
 	}
 
-	public static void InitTier(UITier uiTier, XPTreeTier tier)
+	public void UpdateTree(XPTree tree)
 	{
-
+		UITree uiTree = m_Trees[tree];
+		uiTree.UpdateTree(tree);
 	}
 
-	public static void InitElement(UIElement uiElement, XPTreeElement element, SkillLevelDescriptor descriptor)
+	public void InitTier(UITier uiTier, XPTreeTier tier)
 	{
-		uiElement.Background.sprite = element.Descriptor.SkillSprite;
-		if (element.Level > 0)
-		{
-			uiElement.Overlay.sprite = descriptor.UnlockedSprite;
-			if (element.Descriptor.MaxLevel > 1)
-			{
-				uiElement.SkillLevelText.text = string.Format("{0}/{1}", element.Level, element.Descriptor.MaxLevel);
-			}
-			else
-			{
-				uiElement.SkillLevelText.text = "";
-			}
-		}
-		else
-		{
-			uiElement.Overlay.sprite = descriptor.LockedSprite;
-		}
-		if (element.Element == null)
-		{
-			uiElement.UnlockButton.onClick.AddListener(() => element.OnActionReceived(descriptor));
-			element.Element = uiElement;
-		}
+		uiTier.InitTier(tier);
+		m_Tiers.Add(tier, uiTier);
+	}
+
+	public void UpdateTier(XPTreeTier tier)
+	{
+		UITier uiTier = m_Tiers[tier];
+		uiTier.UpdateTier(tier);
+	}
+
+	public void InitElement(UIElement uiElement, XPTreeElement element, SkillProgressionDescriptor descriptor)
+	{
+		uiElement.InitElement(element);
+		m_Elements.Add(element, uiElement);
+	}
+
+	public void UpdateElement(XPTreeElement element)
+	{
+		UIElement uiElement = m_Elements[element];
+		uiElement.UpdateElement(element);
 	}
 }

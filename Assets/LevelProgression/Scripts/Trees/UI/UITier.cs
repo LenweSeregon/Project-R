@@ -6,14 +6,12 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 
 	public class UITier : MonoBehaviour
 	{
-		// Start is called before the first frame update
-		void Start()
+		public void InitTier(XPTreeTier tier)
 		{
-
+			UpdateTier(tier);
 		}
 
-		// Update is called once per frame
-		void Update()
+		public void UpdateTier(XPTreeTier tier)
 		{
 
 		}

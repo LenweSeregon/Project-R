@@ -5,8 +5,8 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 	using UnityEngine;
 	using UnityEngine.UI;
 
-	[CreateAssetMenu(fileName = "SkillLevelDescriptor", menuName = "Level/Descriptors/SkillLevelDescriptor")]
-	public class SkillLevelDescriptor : LevelDescriptor
+	[CreateAssetMenu(fileName = "SkillProgressionDescriptor", menuName = "Progression/Descriptors/SkillProgressionDescriptor")]
+	public class SkillProgressionDescriptor : ProgressionDescriptor
 	{
 		[SerializeField] protected List<XPTreeDescriptor> m_Trees = new List<XPTreeDescriptor>();
 		[SerializeField] protected Sprite m_LockedSprite;
@@ -17,14 +17,14 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 
 		public List<XPTreeDescriptor> Trees => m_Trees;
 
-		public SkillLevelDescriptor(SkillLevelDescriptor descriptor) : base(descriptor)
+		public SkillProgressionDescriptor(SkillProgressionDescriptor descriptor) : base(descriptor)
 		{
 			m_Trees = descriptor.Trees;
 		}
 
-		public override LevelController CreateController()
+		public override ProgressionController CreateController()
 		{
-			return new SkillLevelController(this);
+			return new SkillProgressionController(this);
 		}
 	}
 

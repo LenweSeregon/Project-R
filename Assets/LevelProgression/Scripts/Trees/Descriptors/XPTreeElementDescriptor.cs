@@ -6,7 +6,7 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 	using UnityEngine.UI;
 	using UnityAtoms.BaseAtoms;
 
-	[CreateAssetMenu(fileName = "XPTreeElementDescriptor", menuName = "Level/Descriptors/XPTreeElementDescriptor")]
+	[CreateAssetMenu(fileName = "XPTreeElementDescriptor", menuName = "Progression/Descriptors/XPTreeElementDescriptor")]
 	public class XPTreeElementDescriptor : ScriptableObject
 	{
 		#region Prerequisites

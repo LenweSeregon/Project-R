@@ -29,7 +29,7 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 			m_Tier = tier;
 		}
 
-		public bool CheckUnlockable(XPTree tree, SkillLevelDescriptor descriptor)
+		public bool CheckUnlockable(XPTree tree, SkillProgressionDescriptor descriptor)
 		{
 			bool isUnlockable = m_Descriptor.CheckUnlockable(tree);
 			if (m_Level < m_Descriptor.MaxLevel)
@@ -43,35 +43,37 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 			return isUnlockable;
 		}
 
-		public void Lock(SkillLevelDescriptor descriptor)
+		public void Lock(SkillProgressionDescriptor descriptor)
 		{
 			m_Level = 0;
 			m_OverlayImage = descriptor.LockedSprite;
-			WrapperProgressionSystemUIComponent.InitElement(m_UIElement, this, descriptor);
-			WrapperProgressionSystemUIComponent.UpdateLevel(m_Tier.Tree.Controller.Level, m_Tier.Tree.Controller);
+			//WrapperProgressionSystemUIComponent.InitElement(m_UIElement, this, descriptor);
+			//WrapperProgressionSystemUIComponent.UpdateLevel(m_Tier.Tree.Controller.Level, m_Tier.Tree.Controller);
+			//OnUnlockEvent.Raise(); => UpdateElement, UpdateLevel
 		}
 
-		public void Unlock(SkillLevelDescriptor descriptor)
+		public void Unlock(SkillProgressionDescriptor descriptor)
 		{
 			if (m_Level < m_Descriptor.MaxLevel && m_Tier.Tree.Controller.Points >= m_Descriptor.Price)
 			{
-				if(m_Level == 0)
+				if (m_Level == 0)
 				{
 					m_Tier.NotifyUnlockElement(this);
 				}
 				m_Level++;
 				m_OverlayImage = descriptor.UnlockedSprite;
 				m_Tier.Tree.SetPoints(-m_Descriptor.Price);
-				WrapperProgressionSystemUIComponent.InitElement(m_UIElement, this, descriptor);
-				WrapperProgressionSystemUIComponent.UpdateLevel((UISkillLevel) m_Tier.Tree.Controller.Level, m_Tier.Tree.Controller);
+				//WrapperProgressionSystemUIComponent.InitElement(m_UIElement, this, descriptor);
+				//WrapperProgressionSystemUIComponent.UpdateLevel((UISkillLevel) m_Tier.Tree.Controller.Level, m_Tier.Tree.Controller);
+				//OnLockEvent.Raise(); => UpdateElement, UpdateLevel
 			}
 		}
 
-		public void OnActionReceived(SkillLevelDescriptor descriptor)
+		public void OnActionReceived(SkillProgressionDescriptor descriptor)
 		{
 			//if(Input.GetMouseButtonDown(0))
 			//{
-				Unlock(descriptor);
+			Unlock(descriptor);
 			//}
 			//else if(Input.GetMouseButtonDown(1))
 			//{

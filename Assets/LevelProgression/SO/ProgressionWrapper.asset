@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b69644dcf5fa8304c91c3a7941dcc0c6, type: 3}
-  m_Name: LevelsManager
+  m_Script: {fileID: 11500000, guid: 9837ba075ce629c439f661ed386ca3ff, type: 3}
+  m_Name: ProgressionWrapper
   m_EditorClassIdentifier: 
-  m_Wrapper: {fileID: 11400000, guid: 64717caa1bd526e42971926548c60f51, type: 2}
-  m_ProgressionDescriptors: []

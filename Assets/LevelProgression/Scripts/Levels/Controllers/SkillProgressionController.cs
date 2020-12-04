@@ -4,7 +4,7 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 	using System.Collections.Generic;
 	using UnityEngine;
 
-	public class SkillLevelController : LevelController
+	public class SkillProgressionController : ProgressionController
 	{
 		protected int m_NbPoints = 0;
 		protected List<XPTree> m_Trees = new List<XPTree>();
@@ -16,9 +16,9 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 		}
 		public List<XPTree> Trees => m_Trees;
 
-		public SkillLevelController(SkillLevelDescriptor descriptor) : base(descriptor)
+		public SkillProgressionController(SkillProgressionDescriptor descriptor) : base(descriptor)
 		{
-			foreach (XPTreeDescriptor tree in ((SkillLevelDescriptor)m_LevelDescriptor).Trees)
+			foreach (XPTreeDescriptor tree in ((SkillProgressionDescriptor)m_ProgressionDescriptor).Trees)
 			{
 				m_Trees.Add(new XPTree(tree, this));
 			}
@@ -41,7 +41,7 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 					bool tierUnlocked = false;
 					foreach (XPTreeElement elt in tier.Elements)
 					{
-						if (elt.CheckUnlockable(tree, (SkillLevelDescriptor)m_LevelDescriptor))
+						if (elt.CheckUnlockable(tree, (SkillProgressionDescriptor)m_ProgressionDescriptor))
 						{
 							tierUnlocked = true;
 						}
@@ -58,7 +58,7 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 		{
 			foreach (XPTree tree in m_Trees)
 			{
-				tree.Reset((SkillLevelDescriptor)m_LevelDescriptor);
+				tree.Reset((SkillProgressionDescriptor)m_ProgressionDescriptor);
 			}
 		}
 	}

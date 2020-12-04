@@ -5,37 +5,47 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 	using UnityEngine;
 	using UnityAtoms;
 
-	[CreateAssetMenu(fileName = "LevelsManager", menuName = "Level/Manager")]
+	[CreateAssetMenu(fileName = "LevelsManager", menuName = "Progression/Manager")]
 	public class LevelsManager : ScriptableObject
 	{
-		[SerializeField] protected List<LevelDescriptor> m_LevelDescriptors = new List<LevelDescriptor>();
+		[SerializeField] protected WrapperProgressionSystemUIComponent m_Wrapper;
+		[SerializeField] protected List<ProgressionDescriptor> m_ProgressionDescriptors = new List<ProgressionDescriptor>();
 
-		protected List<LevelController> m_ActiveControllers = new List<LevelController>();
+		protected List<ProgressionController> m_ActiveControllers = new List<ProgressionController>();
 
-		public LevelController CreateController(LevelDescriptor levelDescriptor)
+		public WrapperProgressionSystemUIComponent Wrapper => m_Wrapper;
+
+		public ProgressionController CreateController(ProgressionDescriptor progressionDescriptor)
 		{
-			return levelDescriptor.CreateController();
+			return progressionDescriptor.CreateController();
 		}
 
 		public void AddXP(float amount, XPType xpType)
 		{
-			foreach (LevelController ctl in m_ActiveControllers)
+			foreach (ProgressionController ctl in m_ActiveControllers)
 			{
 				if (ctl.Type.Value == xpType.Value)
 				{
 					ctl.AddXP(amount);
+					m_Wrapper.UpdateProgression(ctl);
 				}
 			}
 		}
 
-		public void AddActiveController(LevelController levelController)
+		public void AddActiveController(ProgressionController progressionController, UIProgression uiProgression)
 		{
-			m_ActiveControllers.Add(levelController);
+			m_ActiveControllers.Add(progressionController);
+			m_Wrapper.InitProgression(uiProgression, progressionController);
 		}
 
-		public void RemoveActiveController(LevelController levelController)
+		public void RemoveActiveController(ProgressionController progressionController)
 		{
-			m_ActiveControllers.Remove(levelController);
+			m_ActiveControllers.Remove(progressionController);
+		}
+
+		public void UpdateProgression(ProgressionController progressionController)
+		{
+			m_Wrapper.UpdateProgression(progressionController);
 		}
 	}
 

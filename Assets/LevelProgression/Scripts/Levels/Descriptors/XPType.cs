@@ -5,6 +5,6 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 	using UnityEngine;
 	using UnityAtoms.BaseAtoms;
 
-	[CreateAssetMenu(fileName = "XPType", menuName = "Level/XPType")]
+	[CreateAssetMenu(fileName = "XPType", menuName = "Progression/XPType")]
 	public class XPType : StringVariable { }
 }

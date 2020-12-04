@@ -5,8 +5,8 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 	using UnityEngine;
 	using UnityAtoms.BaseAtoms;
 
-	[CreateAssetMenu(fileName = "LevelDescriptor", menuName = "Level/Descriptors/PlainDescriptor")]
-	public class LevelDescriptor : ScriptableObject, System.ICloneable
+	[CreateAssetMenu(fileName = "ProgressionDescriptor", menuName = "Progression/Descriptors/PlainProgressionDescriptor")]
+	public class ProgressionDescriptor : ScriptableObject, System.ICloneable
 	{
 		[SerializeField] protected FloatVariable m_BaseXP;
 		[SerializeField] protected IntVariable m_MaxLevel;
@@ -19,7 +19,7 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 		public string Name => m_DescriptorName;
 		public XPType Type => m_XPType;
 
-		public LevelDescriptor(LevelDescriptor descriptor)
+		public ProgressionDescriptor(ProgressionDescriptor descriptor)
 		{
 			m_BaseXP = descriptor.BaseXP;
 			m_MaxLevel = descriptor.MaxLevel;
@@ -37,14 +37,14 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 			return (amount * m_IncreaseRatio) - amount;
 		}
 
-		public virtual LevelController CreateController()
+		public virtual ProgressionController CreateController()
 		{
-			return new LevelController(this);
+			return new ProgressionController(this);
 		}
 
 		public object Clone()
 		{
-			return (LevelDescriptor) Instantiate(this);
+			return (ProgressionDescriptor) Instantiate(this);
 		}
 	}
 

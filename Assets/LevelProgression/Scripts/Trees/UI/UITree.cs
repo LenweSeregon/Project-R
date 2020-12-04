@@ -11,9 +11,17 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 		[SerializeField] private Image m_Background;
 		[SerializeField] private TextMeshProUGUI m_TreeTitle;
 		[SerializeField] private Transform m_TiersContainer;
-
-		public Image Background => m_Background;
-		public TextMeshProUGUI Title => m_TreeTitle;
 		public Transform TiersContainer => m_TiersContainer;
+
+		public void InitTree(XPTree tree)
+		{
+			UpdateTree(tree);
+		}
+
+		public void UpdateTree(XPTree tree)
+		{
+			m_Background.sprite = tree.Descriptor.Background;
+			m_TreeTitle.text = tree.Descriptor.TreeName;
+		}
 	}
 }
