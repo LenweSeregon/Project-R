@@ -10,7 +10,7 @@ public class WrapperProgressionSystemUIComponent : ScriptableObject
 	private Dictionary<ProgressionController, UIProgression> m_Progressions = new Dictionary<ProgressionController, UIProgression>();
 	private Dictionary<XPTree, UITree> m_Trees = new Dictionary<XPTree, UITree>();
 	private Dictionary<XPTreeTier, UITier> m_Tiers = new Dictionary<XPTreeTier, UITier>();
-	private Dictionary<XPTreeElement, UIElement> m_Elements = new Dictionary<XPTreeElement, UIElement>();
+	private Dictionary<XPTreeElement, UITreeElement> m_Elements = new Dictionary<XPTreeElement, UITreeElement>();
 
 	public void InitProgression(UIProgression uiProgression, ProgressionController progression)
 	{
@@ -28,6 +28,7 @@ public class WrapperProgressionSystemUIComponent : ScriptableObject
 	{
 		uiTree.UpdateTree(tree);
 		m_Trees.Add(tree, uiTree);
+		tree.OnTreeChanged += UpdateProgression;
 	}
 
 	public void UpdateTree(XPTree tree)
@@ -48,15 +49,57 @@ public class WrapperProgressionSystemUIComponent : ScriptableObject
 		uiTier.UpdateTier(tier);
 	}
 
-	public void InitElement(UIElement uiElement, XPTreeElement element, SkillProgressionDescriptor descriptor)
+	public void InitElement(UITreeElement uiElement, XPTreeElement element, SkillProgressionDescriptor descriptor)
 	{
 		uiElement.InitElement(element);
 		m_Elements.Add(element, uiElement);
+		uiElement.UnlockButton.onClick.AddListener(delegate { ModifyElementLevel(element); } );
+		element.OnLevelIncreased += UpdateElement;
+		element.OnLevelDecreased += UpdateElement;
+		element.OnLevelReset += UpdateElement;
 	}
 
 	public void UpdateElement(XPTreeElement element)
 	{
-		UIElement uiElement = m_Elements[element];
+		UITreeElement uiElement = m_Elements[element];
 		uiElement.UpdateElement(element);
+	}
+
+	/*private void ModifyElementLevel(UITreeElement uiElement)
+	{
+		foreach (KeyValuePair<XPTreeElement, UITreeElement> pair in m_Elements)
+		{
+			if (pair.Value == uiElement)
+			{
+				XPTreeElement element = pair.Key;
+				//Use new input system
+				Debug.Log("Event Raised");
+				if (Input.GetMouseButtonDown(0))
+				{
+					element.IncreaseLevel();
+					Debug.Log("left click");
+				}
+				if (Input.GetMouseButtonDown(1))
+				{
+					Debug.Log("right click");
+				}
+				break;
+			}
+		}
+	}*/
+
+	private void ModifyElementLevel(XPTreeElement Element)
+	{
+		//Use new input system
+		Debug.Log("Event Raised");
+		if (Input.GetMouseButtonDown(0))
+		{
+			element.IncreaseLevel();
+			Debug.Log("left click");
+		}
+		if (Input.GetMouseButtonDown(1))
+		{
+			Debug.Log("right click");
+		}
 	}
 }

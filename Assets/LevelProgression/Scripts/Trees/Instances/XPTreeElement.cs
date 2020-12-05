@@ -1,9 +1,10 @@
 namespace com.CompanyR.FrameworkR.ProgressSystem
 {
-	using System.Collections;
+    using System.Collections;
 	using System.Collections.Generic;
 	using UnityEngine;
-	using UnityEngine.UI;
+    using UnityEngine.Events;
+    using UnityEngine.UI;
 
 	public class XPTreeElement
 	{
@@ -11,13 +12,20 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 		protected XPTreeTier m_Tier;
 		protected int m_Level = 0;
 		protected Sprite m_OverlayImage;
-		protected UIElement m_UIElement;
+		protected UITreeElement m_UIElement;
+
+		public delegate void TreeElementDelegate(XPTreeElement element);
+		public event TreeElementDelegate OnLevelIncreased;
+		public event TreeElementDelegate OnLevelDecreased;
+		public event TreeElementDelegate OnLevelReset;
 
 		public XPTreeElementDescriptor Descriptor => m_Descriptor;
 		public XPTreeTier Tier => m_Tier;
 		public int Level => m_Level;
 
-		public UIElement Element
+		public SkillProgressionDescriptor ProgressionDescriptor => (SkillProgressionDescriptor ) Tier.Tree.Controller.Descriptor;
+
+		public UITreeElement Element
 		{
 			get => m_UIElement;
 			set => m_UIElement = value;
@@ -43,16 +51,15 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 			return isUnlockable;
 		}
 
-		public void Lock(SkillProgressionDescriptor descriptor)
+		public void Lock()
 		{
+			m_Tier.Tree.AddPoints(m_Level * m_Descriptor.Price);
 			m_Level = 0;
-			m_OverlayImage = descriptor.LockedSprite;
-			//WrapperProgressionSystemUIComponent.InitElement(m_UIElement, this, descriptor);
-			//WrapperProgressionSystemUIComponent.UpdateLevel(m_Tier.Tree.Controller.Level, m_Tier.Tree.Controller);
-			//OnUnlockEvent.Raise(); => UpdateElement, UpdateLevel
+			m_OverlayImage = ProgressionDescriptor.LockedSprite;
+			OnLevelReset(this);
 		}
 
-		public void Unlock(SkillProgressionDescriptor descriptor)
+		public void IncreaseLevel()
 		{
 			if (m_Level < m_Descriptor.MaxLevel && m_Tier.Tree.Controller.Points >= m_Descriptor.Price)
 			{
@@ -61,24 +68,24 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 					m_Tier.NotifyUnlockElement(this);
 				}
 				m_Level++;
-				m_OverlayImage = descriptor.UnlockedSprite;
-				m_Tier.Tree.SetPoints(-m_Descriptor.Price);
-				//WrapperProgressionSystemUIComponent.InitElement(m_UIElement, this, descriptor);
-				//WrapperProgressionSystemUIComponent.UpdateLevel((UISkillLevel) m_Tier.Tree.Controller.Level, m_Tier.Tree.Controller);
-				//OnLockEvent.Raise(); => UpdateElement, UpdateLevel
+				m_OverlayImage = ProgressionDescriptor.UnlockedSprite;
+				m_Tier.Tree.AddPoints(-m_Descriptor.Price);
+				OnLevelIncreased(this);
 			}
 		}
 
-		public void OnActionReceived(SkillProgressionDescriptor descriptor)
+		public void DecreaseLevel()
 		{
-			//if(Input.GetMouseButtonDown(0))
-			//{
-			Unlock(descriptor);
-			//}
-			//else if(Input.GetMouseButtonDown(1))
-			//{
-			//	Lock(descriptor);
-			//}
+			if(m_Level > 0)
+			{
+				m_Level--;
+				if(m_Level == 0)
+				{
+					m_OverlayImage = ProgressionDescriptor.LockedSprite;
+				}
+				m_Tier.Tree.AddPoints(m_Descriptor.Price);
+				OnLevelDecreased(this);
+			}
 		}
 	}
 }

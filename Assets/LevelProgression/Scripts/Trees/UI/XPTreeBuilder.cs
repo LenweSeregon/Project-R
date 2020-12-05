@@ -15,7 +15,7 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 	{
 		[SerializeField] private UITree m_TreePrefab;
 		[SerializeField] private UITier m_TierPrefab;
-		[SerializeField] private UIElement m_ElementPrefab;
+		[SerializeField] private UITreeElement m_ElementPrefab;
 		[SerializeField] private Transform m_TreesContainer;
 
 		protected override void BuildProgression()
@@ -35,18 +35,11 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 					wrapper.InitTier(uiTier, tier);
 					foreach (XPTreeElement element in tier.Elements)
 					{
-						UIElement uiElement = Instantiate(m_ElementPrefab, uiTier.transform);
+						UITreeElement uiElement = Instantiate(m_ElementPrefab, uiTier.transform);
 						wrapper.InitElement(uiElement, element, descriptor);
-						//element.OnLockEvent += this.UpdateTree
 					}
 				}
 			}
 		}
-
-		/*public override void AddXp(float amount)
-		{
-			m_Manager.AddXP(amount, m_XPType);
-			m_Wrapper.UpdateProgression((UISkillLevel)m_UILevel, (SkillLevelController)m_Controller); //à bouger dans le manager
-		}*/
 	}
 }

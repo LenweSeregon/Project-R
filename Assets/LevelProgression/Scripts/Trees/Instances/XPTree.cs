@@ -11,6 +11,9 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 		private List<XPTreeTier> m_Tiers = new List<XPTreeTier>();
 		private List<XPTreeElement> m_UnlockedElements = new List<XPTreeElement>();
 
+		public delegate void TreeDelegate(ProgressionController progression);
+		public event TreeDelegate OnTreeChanged;
+
 		public XPTreeDescriptor Descriptor => m_Descriptor;
 		public List<XPTreeTier> Tiers => m_Tiers;
 		public List<XPTreeElement> UnlockedElements => m_UnlockedElements;
@@ -32,7 +35,7 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 			{
 				foreach (XPTreeElement elt in tier.Elements)
 				{
-					elt.Lock(descriptor);
+					elt.Lock();
 				}
 			}
 		}
@@ -42,9 +45,10 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 			m_UnlockedElements.Add(element);
 		}
 
-		public void SetPoints(int value)
+		public void AddPoints(int value)
 		{
 			m_Controller.Points += value;
+			OnTreeChanged(m_Controller);
 		}
 	}
 }

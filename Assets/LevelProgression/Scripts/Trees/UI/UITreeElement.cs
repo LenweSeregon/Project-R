@@ -6,7 +6,7 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
     using UnityEngine;
     using UnityEngine.UI;
 
-    public class UIElement : MonoBehaviour
+    public class UITreeElement : MonoBehaviour
 	{
 		[SerializeField] private Image m_Background;
 		[SerializeField] private Image m_Overlay;
@@ -24,6 +24,7 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 			m_Background.sprite = element.Descriptor.SkillSprite;
 			m_Descriptor = (SkillProgressionDescriptor) element.Tier.Tree.Controller.Descriptor;
 			UpdateElement(element);
+			//element.OnUnlock += Update
 		}
 
 		public void UpdateElement(XPTreeElement element)
@@ -43,10 +44,6 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 			else
 			{
 				m_Overlay.sprite = m_Descriptor.LockedSprite;
-			}
-			if (element.Element == null)
-			{
-				m_UnlockButton.onClick.AddListener(() => element.OnActionReceived(m_Descriptor));
 			}
 		}
 	}
