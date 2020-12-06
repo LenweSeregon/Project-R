@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9837ba075ce629c439f661ed386ca3ff, type: 3}
-  m_Name: ProgressionWrapper
+  m_Script: {fileID: 11500000, guid: d10671b544a9edd458876a9c2e908c04, type: 3}
+  m_Name: ProgressionsHandler
   m_EditorClassIdentifier: 

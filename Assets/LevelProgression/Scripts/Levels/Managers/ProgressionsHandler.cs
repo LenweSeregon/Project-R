@@ -5,15 +5,10 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 	using UnityEngine;
 	using UnityAtoms;
 
-	[CreateAssetMenu(fileName = "LevelsManager", menuName = "Progression/Manager")]
-	public class LevelsManager : ScriptableObject
+	[CreateAssetMenu(fileName = "ProgressionsHandler", menuName = "Progression/Handler")]
+	public class ProgressionsHandler : ScriptableObject
 	{
-		[SerializeField] protected WrapperProgressionSystemUIComponent m_Wrapper;
-		[SerializeField] protected List<ProgressionDescriptor> m_ProgressionDescriptors = new List<ProgressionDescriptor>();
-
 		protected List<ProgressionController> m_ActiveControllers = new List<ProgressionController>();
-
-		public WrapperProgressionSystemUIComponent Wrapper => m_Wrapper;
 
 		public ProgressionController CreateController(ProgressionDescriptor progressionDescriptor)
 		{
@@ -27,25 +22,18 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 				if (ctl.Type.Value == xpType.Value)
 				{
 					ctl.AddXP(amount);
-					m_Wrapper.UpdateProgression(ctl);
 				}
 			}
 		}
 
-		public void AddActiveController(ProgressionController progressionController, UIProgression uiProgression)
+		public void AddActiveController(ProgressionController progressionController)
 		{
 			m_ActiveControllers.Add(progressionController);
-			m_Wrapper.InitProgression(uiProgression, progressionController);
 		}
 
 		public void RemoveActiveController(ProgressionController progressionController)
 		{
 			m_ActiveControllers.Remove(progressionController);
-		}
-
-		public void UpdateProgression(ProgressionController progressionController)
-		{
-			m_Wrapper.UpdateProgression(progressionController);
 		}
 	}
 

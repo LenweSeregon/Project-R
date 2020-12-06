@@ -14,10 +14,9 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 		protected Sprite m_OverlayImage;
 		protected UITreeElement m_UIElement;
 
-		public delegate void TreeElementDelegate(XPTreeElement element);
+		public delegate void TreeElementDelegate();
 		public event TreeElementDelegate OnLevelIncreased;
 		public event TreeElementDelegate OnLevelDecreased;
-		public event TreeElementDelegate OnLevelReset;
 
 		public XPTreeElementDescriptor Descriptor => m_Descriptor;
 		public XPTreeTier Tier => m_Tier;
@@ -56,7 +55,6 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 			m_Tier.Tree.AddPoints(m_Level * m_Descriptor.Price);
 			m_Level = 0;
 			m_OverlayImage = ProgressionDescriptor.LockedSprite;
-			OnLevelReset(this);
 		}
 
 		public void IncreaseLevel()
@@ -70,7 +68,7 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 				m_Level++;
 				m_OverlayImage = ProgressionDescriptor.UnlockedSprite;
 				m_Tier.Tree.AddPoints(-m_Descriptor.Price);
-				OnLevelIncreased(this);
+				OnLevelIncreased();
 			}
 		}
 
@@ -84,7 +82,7 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 					m_OverlayImage = ProgressionDescriptor.LockedSprite;
 				}
 				m_Tier.Tree.AddPoints(m_Descriptor.Price);
-				OnLevelDecreased(this);
+				OnLevelDecreased();
 			}
 		}
 	}

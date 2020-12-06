@@ -11,32 +11,31 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 	/// This should be placed on the root of the skill trees.
 	/// </summary>
 
-	public class XPTreeBuilder : XPBuilder
+	public class XPTreeUIBuilder : XPUIBuilder
 	{
 		[SerializeField] private UITree m_TreePrefab;
 		[SerializeField] private UITier m_TierPrefab;
 		[SerializeField] private UITreeElement m_ElementPrefab;
 		[SerializeField] private Transform m_TreesContainer;
 
-		protected override void BuildProgression()
+		public override void BuildProgression(ProgressionController controller)
 		{
-			base.BuildProgression();
-			SkillProgressionController controller = (SkillProgressionController)m_Controller;
-			WrapperProgressionSystemUIComponent wrapper = m_Manager.Wrapper;
-			SkillProgressionDescriptor descriptor = (SkillProgressionDescriptor)controller.Descriptor;
-			foreach (XPTree tree in controller.Trees)
+			base.BuildProgression(controller);
+			SkillProgressionController skillController = (SkillProgressionController) controller;
+			SkillProgressionDescriptor descriptor = (SkillProgressionDescriptor)skillController.Descriptor;
+			foreach (XPTree tree in skillController.Trees)
 			{
 				UITree uiTree = Instantiate(m_TreePrefab, m_TreesContainer);
-				wrapper.InitTree(uiTree, tree);
+				uiTree.InitTree(tree);
 
 				foreach (XPTreeTier tier in tree.Tiers)
 				{
 					UITier uiTier = Instantiate(m_TierPrefab, uiTree.TiersContainer.transform);
-					wrapper.InitTier(uiTier, tier);
+					uiTier.InitTier(tier);
 					foreach (XPTreeElement element in tier.Elements)
 					{
 						UITreeElement uiElement = Instantiate(m_ElementPrefab, uiTier.transform);
-						wrapper.InitElement(uiElement, element, descriptor);
+						uiElement.InitElement(element);
 					}
 				}
 			}

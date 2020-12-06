@@ -11,19 +11,15 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 		protected int m_LevelCount;
 		protected int m_NextThreshold;
 		protected float m_Bonus = 1;
-		protected UIProgression m_UIProgression;
+
+		public delegate void ProgressionDelegate();
+		public event ProgressionDelegate OnProgressionChanged;
 
 		public XPType Type => m_ProgressionDescriptor.Type;
 		public ProgressionDescriptor Descriptor => m_ProgressionDescriptor;
 		public float CurrentXP => m_CurrentXP;
 		public int LevelCount => m_LevelCount;
 		public int Threshold => m_NextThreshold;
-
-		public UIProgression Progression
-		{
-			get => m_UIProgression;
-			set => m_UIProgression = value;
-		}
 
 		public ProgressionController(ProgressionDescriptor progressionDescriptor)
 		{
@@ -37,6 +33,12 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 		{
 			m_CurrentXP += amount * m_Bonus;
 			CheckLevelGained();
+			UpdateProgression();
+		}
+
+		public void UpdateProgression()
+		{
+			OnProgressionChanged();
 		}
 
 		private void CheckLevelGained()

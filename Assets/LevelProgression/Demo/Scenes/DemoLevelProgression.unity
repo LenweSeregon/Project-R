@@ -351,9 +351,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1491622870}
-        m_TargetAssemblyTypeName: com.CompanyR.FrameworkR.ProgressSystem.XPBuilder,
-          Assembly-CSharp
+      - m_Target: {fileID: 442297500}
+        m_TargetAssemblyTypeName: DemoXP, Assembly-CSharp
         m_MethodName: AddXp
         m_Mode: 4
         m_Arguments:
@@ -485,9 +484,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1491622870}
-        m_TargetAssemblyTypeName: com.CompanyR.FrameworkR.ProgressSystem.XPBuilder,
-          Assembly-CSharp
+      - m_Target: {fileID: 442297500}
+        m_TargetAssemblyTypeName: DemoXP, Assembly-CSharp
         m_MethodName: AddXp
         m_Mode: 4
         m_Arguments:
@@ -629,8 +627,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0c3aae73b0c1b54bb906e67b661de1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Manager: {fileID: 11400000, guid: a51f6d704c2d752478786b928a41d38f, type: 2}
-  m_Descriptor: {fileID: 11400000, guid: d696041603a5ea9499361fa56037f43f, type: 2}
   m_ProgressionPrefab: {fileID: 5327433550394510351, guid: 049b4430459a5334796903a7790ecd49, type: 3}
   m_ProgressionRoot: {fileID: 390154639}
   m_TreePrefab: {fileID: 5284154813130642616, guid: 7a25e1f3219b4ee43bd6cc83a28bc23b, type: 3}
@@ -780,13 +776,29 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 442297502}
+  - component: {fileID: 442297500}
   m_Layer: 0
-  m_Name: DemooAddXP
+  m_Name: DemoAddXP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &442297500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442297499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75b68f4d72d4805419e02bddee022440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Handler: {fileID: 11400000, guid: 7c063e617dc5e7c44945de61a6f60885, type: 2}
+  m_Builder: {fileID: 1491622867}
+  m_Descriptor: {fileID: 11400000, guid: 6c2f4cee699cc034e8ffc77d7e12c9d1, type: 2}
 --- !u!4 &442297502
 Transform:
   m_ObjectHideFlags: 0
@@ -1866,9 +1878,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 390154643}
-        m_TargetAssemblyTypeName: com.CompanyR.FrameworkR.ProgressSystem.XPBuilder,
-          Assembly-CSharp
+      - m_Target: {fileID: 1322580382}
+        m_TargetAssemblyTypeName: DemoXP, Assembly-CSharp
         m_MethodName: AddXp
         m_Mode: 4
         m_Arguments:
@@ -2000,9 +2011,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 390154643}
-        m_TargetAssemblyTypeName: com.CompanyR.FrameworkR.ProgressSystem.XPBuilder,
-          Assembly-CSharp
+      - m_Target: {fileID: 1322580382}
+        m_TargetAssemblyTypeName: DemoXP, Assembly-CSharp
         m_MethodName: AddXp
         m_Mode: 4
         m_Arguments:
@@ -2134,6 +2144,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1322580381
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1322580383}
+  - component: {fileID: 1322580382}
+  m_Layer: 0
+  m_Name: DemoTreeAddXP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1322580382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322580381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75b68f4d72d4805419e02bddee022440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Handler: {fileID: 11400000, guid: 7c063e617dc5e7c44945de61a6f60885, type: 2}
+  m_Builder: {fileID: 390154643}
+  m_Descriptor: {fileID: 11400000, guid: d696041603a5ea9499361fa56037f43f, type: 2}
+--- !u!4 &1322580383
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322580381}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 485.44794, y: 277.07654, z: -49.204563}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1473555430
 GameObject:
   m_ObjectHideFlags: 0
@@ -2217,9 +2273,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1491622870}
-        m_TargetAssemblyTypeName: com.CompanyR.FrameworkR.ProgressSystem.XPBuilder,
-          Assembly-CSharp
+      - m_Target: {fileID: 442297500}
+        m_TargetAssemblyTypeName: DemoXP, Assembly-CSharp
         m_MethodName: AddXp
         m_Mode: 4
         m_Arguments:
@@ -2279,7 +2334,7 @@ GameObject:
   - component: {fileID: 1491622866}
   - component: {fileID: 1491622869}
   - component: {fileID: 1491622868}
-  - component: {fileID: 1491622870}
+  - component: {fileID: 1491622867}
   m_Layer: 5
   m_Name: Plain XP
   m_TagString: Untagged
@@ -2310,6 +2365,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1491622867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491622865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 072735cc1862a3b4588e6fb194bbe46c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ProgressionPrefab: {fileID: 3876419579710625284, guid: b5edac7be23223542a89c6589e0dafdf, type: 3}
+  m_ProgressionRoot: {fileID: 1491622866}
 --- !u!114 &1491622868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2348,22 +2417,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1491622865}
   m_CullTransparentMesh: 1
---- !u!114 &1491622870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1491622865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 072735cc1862a3b4588e6fb194bbe46c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Manager: {fileID: 11400000, guid: a51f6d704c2d752478786b928a41d38f, type: 2}
-  m_Descriptor: {fileID: 11400000, guid: 6c2f4cee699cc034e8ffc77d7e12c9d1, type: 2}
-  m_ProgressionPrefab: {fileID: 3876419579710625284, guid: b5edac7be23223542a89c6589e0dafdf, type: 3}
-  m_ProgressionRoot: {fileID: 1491622866}
 --- !u!1 &1513732437
 GameObject:
   m_ObjectHideFlags: 0
@@ -2683,9 +2736,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 390154643}
-        m_TargetAssemblyTypeName: com.CompanyR.FrameworkR.ProgressSystem.XPBuilder,
-          Assembly-CSharp
+      - m_Target: {fileID: 1322580382}
+        m_TargetAssemblyTypeName: DemoXP, Assembly-CSharp
         m_MethodName: AddXp
         m_Mode: 4
         m_Arguments:
