@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BaseXP: {fileID: 11400000, guid: d76961756244547498c9bac69edad836, type: 2}
   m_MaxLevel: {fileID: 11400000, guid: e12d407890f54fe4c9e0e51271b9e40f, type: 2}
-  m_IncreaseRatio: 1.5
+  m_IncreaseRatio: 1.1
   m_DescriptorName: Weapon XP
   m_XPType: {fileID: 11400000, guid: 773586847a3ccbd4ea253695f3ae0195, type: 2}
   m_Trees:
