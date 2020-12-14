@@ -10,14 +10,14 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 		/// <summary>
 		/// List of controllers that contain the associated trait.
 		/// </summary>
-		[SerializeField] private SerializableDictionary<TraitDescriptor, List<TraitsController>> m_ActiveControllers;
+		[SerializeField] private Dictionary<TraitDescriptor, List<TraitsController>> m_ActiveControllers;
 
 		public void AddController(TraitsController controller)
 		{
-			foreach (TraitInstance trait in controller.Traits)
+			controller.InitController(this);
+			foreach (TraitInstance traitInstance in controller.Traits)
 			{
-				TraitDescriptor descriptor = trait.Descriptor;
-				m_ActiveControllers[descriptor].Add(controller); //add ref to handler in controller?
+				AddTrait(traitInstance, controller);
 			}
 		}
 
@@ -25,29 +25,56 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 		{
 			foreach (TraitInstance traitInstance in controller.Traits)
 			{
-				TraitDescriptor desc = traitInstance.Descriptor;
-				m_ActiveControllers[desc].Remove(controller);
+				RemoveTrait(traitInstance, controller);
 			}
+		}
+
+		private Dictionary<TraitDescriptor, List<TraitsController>> RetrieveAffectedControllers(List<TraitDescriptor> affectedListDescriptor)
+		{
+			Dictionary<TraitDescriptor, List<TraitsController>> affectedControllersDictionary = new Dictionary<TraitDescriptor, List<TraitsController>>();
+			foreach (TraitDescriptor desc in affectedListDescriptor)
+			{
+				List<TraitsController> affectedControllers = new List<TraitsController>();
+				affectedControllers.AddRange(m_ActiveControllers[desc]);
+				affectedControllersDictionary[desc] = affectedControllers;
+			}
+			return affectedControllersDictionary;
 		}
 
 		public void InvokeEffect(string IDName, TraitsController owner)
 		{
-			foreach(TraitInstance trait in owner.Traits)
+			foreach (TraitInstance trait in owner.Traits)
 			{
-				if(trait.IDName == IDName)
+				if (trait.IDName == IDName)
 				{
 					IInvokableTrait invokableTrait = (IInvokableTrait)trait.Descriptor;
-					if(invokableTrait != null)
+					if (invokableTrait != null)
 					{
-						List<TraitsController> affectedControllers = new List<TraitsController>();
-						foreach(TraitDescriptor desc in invokableTrait.AffectedOnInvokeTraits)
-						{
-							affectedControllers.AddRange(m_ActiveControllers[desc]);
-						}
-						invokableTrait.InvokeEffect(owner, affectedControllers);
+						invokableTrait.InvokeEffect(owner, RetrieveAffectedControllers(invokableTrait.AffectedOnInvokeTraits));
 					}
 				}
 			}
+		}
+
+		public void InvokeTraitStartEffect(TraitInstance traitInstance, TraitsController owner)
+		{
+			traitInstance.Descriptor.InvokeStartEffect(owner, RetrieveAffectedControllers(traitInstance.Descriptor.AffectedTraits));
+		}
+		
+
+		public void InvokeTraitEndEffect(TraitInstance traitInstance, TraitsController owner)
+		{
+			traitInstance.Descriptor.InvokeEndEffect(owner, RetrieveAffectedControllers(traitInstance.Descriptor.AffectedTraits));
+		}
+
+		public void AddTrait(TraitInstance traitInstance, TraitsController owner)
+		{
+			m_ActiveControllers[traitInstance.Descriptor].Add(owner);
+		}
+
+		public void RemoveTrait(TraitInstance traitInstance, TraitsController owner)
+		{
+			m_ActiveControllers[traitInstance.Descriptor].Remove(owner);
 		}
 	}
 }

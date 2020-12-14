@@ -4,27 +4,70 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 	using System.Collections.Generic;
 	using UnityEngine;
 
-	public class TraitsController
+	public class TraitsController : MonoBehaviour
 	{
 		private List<TraitInstance> m_Traits;
+		private TraitsHandler m_Handler;
 
 		public List<TraitInstance> Traits => m_Traits;
+
+		public void InitController(TraitsHandler handler) => m_Handler = handler;
 
 		public void AddTrait(TraitDescriptor traitDescriptor)
 		{
 			TraitInstance trait = new TraitInstance(traitDescriptor);
+			bool comboActivated = false;
+			foreach (TraitInstance traitInstance in m_Traits)
+			{
+				foreach (TraitDescriptor comboDesc in traitDescriptor.TraitsCombos)
+				{
+					if (traitInstance.Descriptor == comboDesc)
+					{
+						comboActivated = true;
+						m_Handler.InvokeTraitEndEffect(traitInstance, this);
+						//TODO
+						//traitInstance.Descriptor.CheckIfComboExists(traitDescriptor, traitDescriptor.TraitsCombos[comboDesc]);
+						//AddTrait(traitDescriptor.TraitsCombos[comboDesc]);
+					}
+				}
+			}
+
+			if (comboActivated == false)
+			{
+				m_Handler.InvokeTraitStartEffect(trait, this);
+			}
+			m_Handler.AddTrait(trait, this);
 			m_Traits.Add(trait);
-			//reference and call on Handler to add combos + InvokeStartEffect??
 		}
+
 
 		public void RemoveTrait(TraitDescriptor traitDescriptor)
 		{
-			foreach(TraitInstance trait in m_Traits)
+			foreach (TraitInstance trait in m_Traits)
 			{
-				if(trait.Descriptor == traitDescriptor)
+				if (trait.Descriptor == traitDescriptor)
 				{
+					bool comboActivated = false;
+					foreach (TraitInstance traitInstance in m_Traits)
+					{
+						foreach (TraitDescriptor comboDesc in traitDescriptor.TraitsCombos)
+						{
+							if (traitInstance.Descriptor == comboDesc)
+							{
+								comboActivated = true;
+								m_Handler.InvokeTraitStartEffect(traitInstance, this);
+								//TODO
+								//RemoveTrait(traitDescriptor.TraitsCombos[comboDesc]);
+							}
+						}
+					}
+
+					if (comboActivated == false)
+					{
+						m_Handler.InvokeTraitEndEffect(trait, this);
+					}
+					m_Handler.RemoveTrait(trait, this);
 					m_Traits.Remove(trait);
-					//call on Handler to remove combos + InvokeEndEffect??
 				}
 			}
 		}
