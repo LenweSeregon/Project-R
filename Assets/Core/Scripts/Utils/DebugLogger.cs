@@ -1,16 +1,26 @@
-namespace com.CompanyR.FrameworkR.Utils
+namespace com.CompanyR.FrameworkR.Core
 {
-	using System.Collections;
+    using System.Collections;
 	using System.Collections.Generic;
-	using UnityEngine;
+    using System.Reflection;
+    using UnityEngine;
 
 	public class DebugLogger
 	{
+		private static string GetStackInfo()
+		{
+			System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame(2, true);
+			MethodBase method = stackFrame.GetMethod();
+
+			return string.Format("<size=12><b><color=silver>[{0}/{1}:{2}] </color></b></size>",
+				method.ReflectedType.FullName, stackFrame.GetMethod().Name, stackFrame.GetFileLineNumber());
+		}
+
 		public static void Log(object message, Object context)
 		{
 			if (Debug.isDebugBuild)
 			{
-				Debug.Log(message, context);
+				Debug.Log(GetStackInfo() + message, context);
 			}
 		}
 
@@ -18,7 +28,7 @@ namespace com.CompanyR.FrameworkR.Utils
 		{
 			if (Debug.isDebugBuild)
 			{
-				Debug.Log(message);
+				Debug.Log(GetStackInfo() + message);
 			}
 		}
 
@@ -27,7 +37,7 @@ namespace com.CompanyR.FrameworkR.Utils
 		{
 			if (Debug.isDebugBuild)
 			{
-				Debug.LogAssertion(message, context);
+				Debug.LogAssertion(GetStackInfo() + message, context);
 			}
 		}
 
@@ -36,7 +46,7 @@ namespace com.CompanyR.FrameworkR.Utils
 		{
 			if (Debug.isDebugBuild)
 			{
-				Debug.LogAssertion(message);
+				Debug.LogAssertion(GetStackInfo() + message);
 			}
 		}
 
@@ -45,7 +55,7 @@ namespace com.CompanyR.FrameworkR.Utils
 		{
 			if (Debug.isDebugBuild)
 			{
-				Debug.LogAssertionFormat(context, format, args);
+				Debug.LogAssertionFormat(context, GetStackInfo() + format, args);
 			}
 		}
 
@@ -54,7 +64,7 @@ namespace com.CompanyR.FrameworkR.Utils
 		{
 			if (Debug.isDebugBuild)
 			{
-				Debug.LogAssertionFormat(format, args);
+				Debug.LogAssertionFormat(GetStackInfo() + format, args);
 			}
 		}
 
@@ -62,7 +72,7 @@ namespace com.CompanyR.FrameworkR.Utils
 		{
 			if (Debug.isDebugBuild)
 			{
-				Debug.LogError(message);
+				Debug.LogError(GetStackInfo() + message);
 			}
 		}
 
@@ -70,7 +80,7 @@ namespace com.CompanyR.FrameworkR.Utils
 		{
 			if (Debug.isDebugBuild)
 			{
-				Debug.LogError(message, context);
+				Debug.LogError(GetStackInfo() + message, context);
 			}
 		}
 
@@ -78,7 +88,7 @@ namespace com.CompanyR.FrameworkR.Utils
 		{
 			if (Debug.isDebugBuild)
 			{
-				Debug.LogErrorFormat(format, args);
+				Debug.LogErrorFormat(GetStackInfo() + format, args);
 			}
 		}
 
@@ -86,7 +96,7 @@ namespace com.CompanyR.FrameworkR.Utils
 		{
 			if (Debug.isDebugBuild)
 			{
-				Debug.LogErrorFormat(context, format, args);
+				Debug.LogErrorFormat(context, GetStackInfo() + format, args);
 			}
 		}
 
@@ -94,6 +104,7 @@ namespace com.CompanyR.FrameworkR.Utils
 		{
 			if (Debug.isDebugBuild)
 			{
+				Debug.LogError(GetStackInfo() + " threw an exception");
 				Debug.LogException(exception);
 			}
 		}
@@ -102,6 +113,7 @@ namespace com.CompanyR.FrameworkR.Utils
 		{
 			if (Debug.isDebugBuild)
 			{
+				Debug.LogError(GetStackInfo() + " threw an exception");
 				Debug.LogException(exception, context);
 			}
 		}
@@ -110,7 +122,7 @@ namespace com.CompanyR.FrameworkR.Utils
 		{
 			if (Debug.isDebugBuild)
 			{
-				Debug.LogFormat(context, format, args);
+				Debug.LogFormat(context, GetStackInfo() + format, args);
 			}
 		}
 
@@ -118,7 +130,7 @@ namespace com.CompanyR.FrameworkR.Utils
 		{
 			if (Debug.isDebugBuild)
 			{
-				Debug.LogFormat(logType, logOptions, context, format, args);
+				Debug.LogFormat(logType, logOptions, context, GetStackInfo() + format, args);
 			}
 		}
 
@@ -126,7 +138,7 @@ namespace com.CompanyR.FrameworkR.Utils
 		{
 			if (Debug.isDebugBuild)
 			{
-				Debug.LogFormat(format, args);
+				Debug.LogFormat(GetStackInfo() + format, args);
 			}
 		}
 
@@ -134,7 +146,7 @@ namespace com.CompanyR.FrameworkR.Utils
 		{
 			if (Debug.isDebugBuild)
 			{
-				Debug.LogWarning(message, context);
+				Debug.LogWarning(GetStackInfo() + message, context);
 			}
 		}
 
@@ -142,7 +154,7 @@ namespace com.CompanyR.FrameworkR.Utils
 		{
 			if (Debug.isDebugBuild)
 			{
-				Debug.LogWarning(message);
+				Debug.LogWarning(GetStackInfo() + message);
 			}
 		}
 
@@ -150,7 +162,7 @@ namespace com.CompanyR.FrameworkR.Utils
 		{
 			if (Debug.isDebugBuild)
 			{
-				Debug.LogWarningFormat(context, format, args);
+				Debug.LogWarningFormat(context, GetStackInfo() + format, args);
 			}
 		}
 
@@ -158,7 +170,7 @@ namespace com.CompanyR.FrameworkR.Utils
 		{
 			if (Debug.isDebugBuild)
 			{
-				Debug.LogWarningFormat(format, args);
+				Debug.LogWarningFormat(GetStackInfo() + format, args);
 			}
 		}
 	}
