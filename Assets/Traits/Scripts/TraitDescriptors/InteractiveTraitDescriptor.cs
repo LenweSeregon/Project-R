@@ -10,10 +10,23 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 	[CreateAssetMenu(fileName = "InteractiveTrait", menuName = "Trait/Descriptors/InteractiveTrait")]
 	public class InteractiveTraitDescriptor : TraitDescriptor, IInvokableTrait
 	{
-		//[SerializeField] protected Dictionary<Effect, List<TraitDescriptor>> m_OnInvokeEffects;
-		[SerializeField] protected List<TraitDescriptor> m_AffectedOnInvokeTraits = new List<TraitDescriptor>();
+		[SerializeField] protected Dictionary<TraitDescriptor, TraitEffect> m_OnInvokeEffects;
+		//[SerializeField] protected List<TraitDescriptor> m_AffectedOnInvokeTraits = new List<TraitDescriptor>();
 
-		public List<TraitDescriptor> AffectedOnInvokeTraits => m_AffectedOnAdditionTraits;
+		protected HashSet<TraitDescriptor> m_AffectedOnInvokeTraits;
+
+		public HashSet<TraitDescriptor> AffectedOnInvokeTraits
+		{
+			get
+			{
+				if (m_AffectedOnInvokeTraits == null)
+				{
+					m_AffectedOnInvokeTraits = new HashSet<TraitDescriptor>(m_OnInvokeEffects.Keys);
+				}
+				return m_AffectedOnInvokeTraits;
+
+			}
+		}
 
 		public void InvokeEffect(TraitsController owner, Dictionary<TraitDescriptor, List<TraitsController>> affectedControllers = null)
 		{
@@ -26,7 +39,19 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 					Debug.Log("Affected controller: " + ctl.name);
 				}
 			}
+
 			//apply effect on affectedControllers
+			foreach (KeyValuePair<TraitDescriptor, List<TraitsController>> entry in affectedControllers)
+			{
+				if (m_OnInvokeEffects.ContainsKey(entry.Key))
+				{
+					m_OnInvokeEffects[entry.Key].InvokeEffect(owner);
+					foreach (TraitsController controller in entry.Value)
+					{
+						m_OnInvokeEffects[entry.Key].InvokeEffect(controller);
+					}
+				}
+			}
 		}
 	}
 }

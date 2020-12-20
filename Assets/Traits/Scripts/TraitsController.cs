@@ -19,7 +19,7 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 			bool comboActivated = false;
 			foreach (TraitInstance traitInstance in m_Traits)
 			{
-				foreach (TraitDescriptor comboDesc in traitDescriptor.TraitsCombos)
+				foreach (TraitDescriptor comboDesc in traitDescriptor.TraitsCombo)
 				{
 					if (traitInstance.Descriptor == comboDesc)
 					{
@@ -50,14 +50,13 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 					bool comboActivated = false;
 					foreach (TraitInstance traitInstance in m_Traits)
 					{
-						foreach (TraitDescriptor comboDesc in traitDescriptor.TraitsCombos)
+						foreach (TraitDescriptor comboDesc in traitDescriptor.TraitsCombo)
 						{
 							if (traitInstance.Descriptor == comboDesc)
 							{
 								comboActivated = true;
 								m_Handler.InvokeTraitStartEffect(traitInstance, this);
-								//TODO
-								//RemoveTrait(traitDescriptor.TraitsCombos[comboDesc]);
+								RemoveTrait(traitDescriptor.GetCombo(comboDesc));
 							}
 						}
 					}

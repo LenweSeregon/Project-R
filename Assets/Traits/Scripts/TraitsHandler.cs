@@ -10,7 +10,12 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 		/// <summary>
 		/// List of controllers that contain the associated trait.
 		/// </summary>
-		[SerializeField] private Dictionary<TraitDescriptor, List<TraitsController>> m_ActiveControllers;
+		[SerializeField] private Dictionary<TraitDescriptor, List<TraitsController>> m_ActiveControllers = new Dictionary<TraitDescriptor, List<TraitsController>>();
+
+		/// <summary>
+		/// Mappers for TraitDescriptors so that when a trait is created, we can apply all the related effects on it.
+		/// </summary>
+		private Dictionary<TraitDescriptor, List<TraitDescriptor>> m_DescriptorsMapper = new Dictionary<TraitDescriptor, List<TraitDescriptor>>();
 
 		public void AddController(TraitsController controller)
 		{
@@ -29,23 +34,27 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 			}
 		}
 
-		private Dictionary<TraitDescriptor, List<TraitsController>> RetrieveAffectedControllers(List<TraitDescriptor> affectedListDescriptor)
+		private Dictionary<TraitDescriptor, List<TraitsController>> RetrieveAffectedControllers(HashSet<TraitDescriptor> affectedListDescriptor)
 		{
 			Dictionary<TraitDescriptor, List<TraitsController>> affectedControllersDictionary = new Dictionary<TraitDescriptor, List<TraitsController>>();
 			foreach (TraitDescriptor desc in affectedListDescriptor)
 			{
 				List<TraitsController> affectedControllers = new List<TraitsController>();
 				affectedControllers.AddRange(m_ActiveControllers[desc]);
-				affectedControllersDictionary[desc] = affectedControllers;
+
+				if (affectedControllersDictionary.ContainsKey(desc) == false)
+				{
+					affectedControllersDictionary.Add(desc, affectedControllers);
+				}
 			}
 			return affectedControllersDictionary;
 		}
 
-		public void InvokeEffect(string IDName, TraitsController owner)
+		public void InvokeEffect(string traitIDName, TraitsController owner)
 		{
 			foreach (TraitInstance trait in owner.Traits)
 			{
-				if (trait.IDName == IDName)
+				if (trait.IDName == traitIDName)
 				{
 					IInvokableTrait invokableTrait = (IInvokableTrait)trait.Descriptor;
 					if (invokableTrait != null)
@@ -58,9 +67,37 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 
 		public void InvokeTraitStartEffect(TraitInstance traitInstance, TraitsController owner)
 		{
-			traitInstance.Descriptor.InvokeStartEffect(owner, RetrieveAffectedControllers(traitInstance.Descriptor.AffectedTraits));
+			TraitDescriptor traitDescriptor = traitInstance.Descriptor;
+			traitDescriptor.InvokeStartEffect(owner, RetrieveAffectedControllers(traitDescriptor.AffectedTraits));
+
+			//If the trait is added for the first time, add its affected traits to the mapper.
+			if (m_ActiveControllers.ContainsKey(traitDescriptor) == false)
+			{
+				foreach (TraitDescriptor affectedTrait in traitDescriptor.AffectedTraits)
+				{
+					if (m_DescriptorsMapper.ContainsKey(affectedTrait) == false)
+					{
+						m_DescriptorsMapper.Add(affectedTrait, new List<TraitDescriptor>());
+					}
+					m_DescriptorsMapper[affectedTrait].Add(traitDescriptor);
+				}
+			}
+
+			//Update every affected controllers with this new trait that has been added.
+			if (m_DescriptorsMapper.ContainsKey(traitDescriptor))
+			{
+				foreach (TraitDescriptor affectedTrait in m_DescriptorsMapper[traitDescriptor])
+				{
+					foreach (TraitsController affectedController in m_ActiveControllers[affectedTrait])
+					{
+						Dictionary<TraitDescriptor, List<TraitsController>> traitDictionary = new Dictionary<TraitDescriptor, List<TraitsController>>();
+						traitDictionary.Add(traitDescriptor, new List<TraitsController> { owner });
+						affectedTrait.InvokeStartEffect(affectedController, traitDictionary);
+					}
+				}
+			}
 		}
-		
+
 
 		public void InvokeTraitEndEffect(TraitInstance traitInstance, TraitsController owner)
 		{
@@ -69,12 +106,19 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 
 		public void AddTrait(TraitInstance traitInstance, TraitsController owner)
 		{
+			if (m_ActiveControllers.ContainsKey(traitInstance.Descriptor) == false)
+			{
+				m_ActiveControllers.Add(traitInstance.Descriptor, new List<TraitsController>());
+			}
 			m_ActiveControllers[traitInstance.Descriptor].Add(owner);
 		}
 
 		public void RemoveTrait(TraitInstance traitInstance, TraitsController owner)
 		{
-			m_ActiveControllers[traitInstance.Descriptor].Remove(owner);
+			if (m_ActiveControllers.ContainsKey(traitInstance.Descriptor))
+			{
+				m_ActiveControllers[traitInstance.Descriptor].Remove(owner);
+			}
 		}
 	}
 }
