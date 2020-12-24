@@ -6,7 +6,7 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 
 	public interface IInvokableTrait
 	{
-		List<TraitDescriptor> AffectedOnInvokeTraits { get; }
-		public void InvokeEffect(TraitsController owner, List<TraitsController> affectedControllers = null);
+		HashSet<TraitDescriptor> AffectedOnInvokeTraits { get; }
+		public void InvokeEffect(TraitsController owner, Dictionary<TraitDescriptor, List<TraitsController>> affectedControllers = null);
 	}
 }
