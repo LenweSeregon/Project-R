@@ -25,9 +25,9 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 					{
 						comboActivated = true;
 						m_Handler.InvokeTraitEndEffect(traitInstance, this);
-						//TODO
-						//traitInstance.Descriptor.CheckIfComboExists(traitDescriptor, traitDescriptor.TraitsCombos[comboDesc]);
-						//AddTrait(traitDescriptor.TraitsCombos[comboDesc]);
+
+						traitInstance.Descriptor.CheckIfComboExists(traitDescriptor, traitDescriptor.GetAssociatedCombo(comboDesc));
+						AddTrait(traitDescriptor.GetAssociatedCombo(comboDesc));
 					}
 				}
 			}

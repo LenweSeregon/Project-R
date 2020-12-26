@@ -115,12 +115,21 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 			}
 		}
 
-		//public void CheckIfComboExists(TraitDescriptor traitDescriptor1, TraitDescriptor traitDescriptor2)
-		//{
-		//	if(m_TraitsCombos[traitDescriptor1] == null)
-		//	{
-		//		m_TraitsCombos[traitDescriptor1] = comboTraitDescriptor2;
-		//	}
-		//}
+		public void CheckIfComboExists(TraitDescriptor traitToCombo, TraitDescriptor combo)
+		{
+			if (m_ComboEffects.ContainsKey(traitToCombo) == false)
+			{
+				m_ComboEffects.Add(traitToCombo, combo);
+			}
+		}
+
+		public TraitDescriptor GetAssociatedCombo(TraitDescriptor traitDescriptor)
+		{
+			if(m_ComboEffects.ContainsKey(traitDescriptor) == true)
+			{
+				return m_ComboEffects[traitDescriptor];
+			}
+			return null;
+		}
 	}
 }
