@@ -19,7 +19,7 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 
 		public void AddController(TraitsController controller)
 		{
-			controller.InitController(this);
+			controller.InitControllerHandler(this);
 			foreach (TraitInstance traitInstance in controller.Traits)
 			{
 				AddTrait(traitInstance, controller);

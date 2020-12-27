@@ -1,11 +1,12 @@
 namespace com.CompanyR.FrameworkR.TraitSystem
 {
-	using System.Collections;
+    using Sirenix.OdinInspector;
+    using System.Collections;
 	using System.Collections.Generic;
 	using UnityEngine;
 
 	[CreateAssetMenu(fileName = "PassiveTrait", menuName = "Trait/Descriptors/PassiveTrait")]
-	public class TraitDescriptor : ScriptableObject
+	public class TraitDescriptor : SerializedScriptableObject
 	{
 		#region Fields
 		/// <summary>

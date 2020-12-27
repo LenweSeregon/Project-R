@@ -6,12 +6,17 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 
 	public class TraitsController : MonoBehaviour
 	{
-		private List<TraitInstance> m_Traits;
+		private string m_ControllerName;
+		private List<TraitInstance> m_Traits = new List<TraitInstance>();
+		private List<TraitDescriptor> m_Combo = new List<TraitDescriptor>();
 		private TraitsHandler m_Handler;
 
 		public List<TraitInstance> Traits => m_Traits;
+		public List<TraitDescriptor> Combo => m_Combo;
+		public string ControllerName => m_ControllerName;
 
-		public void InitController(TraitsHandler handler) => m_Handler = handler;
+		public void InitControllerName(string name) => m_ControllerName = name;
+		public void InitControllerHandler(TraitsHandler handler) => m_Handler = handler;
 
 		public void AddTrait(TraitDescriptor traitDescriptor)
 		{
@@ -26,8 +31,10 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 						comboActivated = true;
 						m_Handler.InvokeTraitEndEffect(traitInstance, this);
 
-						traitInstance.Descriptor.CheckIfComboExists(traitDescriptor, traitDescriptor.GetAssociatedCombo(comboDesc));
-						AddTrait(traitDescriptor.GetAssociatedCombo(comboDesc));
+						TraitDescriptor combo = traitDescriptor.GetAssociatedCombo(comboDesc);
+						traitInstance.Descriptor.CheckIfComboExists(traitDescriptor, combo);
+						AddTrait(combo);
+						m_Combo.Add(combo);
 					}
 				}
 			}
@@ -55,8 +62,10 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 							if (traitInstance.Descriptor == comboDesc)
 							{
 								comboActivated = true;
+								TraitDescriptor combo = traitDescriptor.GetCombo(comboDesc);
 								m_Handler.InvokeTraitStartEffect(traitInstance, this);
-								RemoveTrait(traitDescriptor.GetCombo(comboDesc));
+								RemoveTrait(combo);
+								m_Combo.Remove(combo);
 							}
 						}
 					}
@@ -68,6 +77,26 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 					m_Handler.RemoveTrait(trait, this);
 					m_Traits.Remove(trait);
 				}
+			}
+		}
+
+		public TraitInstance GetTrait(string traitName)
+		{
+			foreach(TraitInstance trait in m_Traits)
+			{
+				if(trait.Descriptor.IDName == traitName)
+				{
+					return trait;
+				}
+			}
+			return null;
+		}
+
+		public void OnDestroy()
+		{
+			foreach(TraitInstance instance in m_Traits)
+			{
+				RemoveTrait(instance.Descriptor);
 			}
 		}
 	}
