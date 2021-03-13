@@ -22,6 +22,8 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 		{
 			TraitInstance trait = new TraitInstance(traitDescriptor);
 			bool comboActivated = false;
+
+			List<TraitDescriptor> combosToAdd = new List<TraitDescriptor>();
 			foreach (TraitInstance traitInstance in m_Traits)
 			{
 				foreach (TraitDescriptor comboDesc in traitDescriptor.TraitsCombo)
@@ -29,22 +31,29 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 					if (traitInstance.Descriptor == comboDesc)
 					{
 						comboActivated = true;
+
 						m_Handler.InvokeTraitEndEffect(traitInstance, this);
 
 						TraitDescriptor combo = traitDescriptor.GetAssociatedCombo(comboDesc);
 						traitInstance.Descriptor.CheckIfComboExists(traitDescriptor, combo);
-						AddTrait(combo);
+						combosToAdd.Add(combo);
 						m_Combo.Add(combo);
 					}
 				}
 			}
 
+			foreach(TraitDescriptor combo in combosToAdd)
+			{
+				AddTrait(combo);
+			}
+
+			m_Handler.AddTrait(trait, this);
+			m_Traits.Add(trait);
+
 			if (comboActivated == false)
 			{
 				m_Handler.InvokeTraitStartEffect(trait, this);
 			}
-			m_Handler.AddTrait(trait, this);
-			m_Traits.Add(trait);
 		}
 
 
@@ -94,10 +103,10 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 
 		public void OnDestroy()
 		{
-			foreach(TraitInstance instance in m_Traits)
+			/*foreach(TraitInstance instance in m_Traits)
 			{
 				RemoveTrait(instance.Descriptor);
-			}
+			}*/
 		}
 	}
 }

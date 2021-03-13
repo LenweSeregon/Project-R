@@ -12,16 +12,16 @@ public class UITree : AbstractUITree
 	[SerializeField] private Transform m_TiersContainer;
 	public Transform TiersContainer => m_TiersContainer;
 
-	public override void InitTree(XPTree tree)
+	public override void InitElement(XPTree tree)
 	{
-		base.InitTree(tree);
-		tree.OnTreeChanged += UpdateTree;
-		UpdateTree();
+		base.InitElement(tree);
+		tree.OnTreeChanged += UpdateElement;
+		UpdateElement();
 	}
 
-	public override void UpdateTree()
+	public override void UpdateElement()
 	{
-		base.UpdateTree();
+		base.UpdateElement();
 		m_Background.sprite = m_Tree.Descriptor.Background;
 		m_TreeTitle.text = m_Tree.Descriptor.TreeName;
 	}

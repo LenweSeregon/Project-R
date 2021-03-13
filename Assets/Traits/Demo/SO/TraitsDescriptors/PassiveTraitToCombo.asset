@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4711407d341e38944a5bcf0ffe643194, type: 3}
-  m_Name: InteractiveTrait
+  m_Script: {fileID: 11500000, guid: 3af54816b515b334aa702774a3b0adb3, type: 3}
+  m_Name: PassiveTraitToCombo
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -59,21 +59,4 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: m_OnInvokeEffects
-      Entry: 7
-      Data: 3|Unity.Cloud.Collaborate.Common.SerializableDictionary`2[[com.CompanyR.FrameworkR.TraitSystem.TraitDescriptor,
-        Assembly-CSharp],[com.CompanyR.FrameworkR.TraitSystem.TraitEffect, Assembly-CSharp]],
-        Unity.CollabProxy.Editor
-    - Name: comparer
-      Entry: 9
-      Data: 1
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-  m_IDName: InteractiveTrait
+  m_IDName: PassiveTraitToCombo

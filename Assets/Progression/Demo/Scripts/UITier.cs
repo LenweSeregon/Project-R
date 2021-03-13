@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class UITier : AbstractUITier
 {
-	public override void InitTier(XPTreeTier tier)
+	public override void InitElement(XPTreeTier tier)
 	{
-		base.InitTier(tier);
-		UpdateTier();
+		base.InitElement(tier);
+		UpdateElement();
 	}
 
-	public override void UpdateTier()
+	public override void UpdateElement()
 	{
-		base.UpdateTier();
+		base.UpdateElement();
 	}
 }

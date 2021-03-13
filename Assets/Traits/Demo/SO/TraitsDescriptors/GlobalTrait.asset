@@ -12,4 +12,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03635bc124e08d9469427f343611c009, type: 3}
   m_Name: GlobalTrait
   m_EditorClassIdentifier: 
-  m_IDName: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: m_ComboEffects
+      Entry: 7
+      Data: 0|Unity.Cloud.Collaborate.Common.SerializableDictionary`2[[com.CompanyR.FrameworkR.TraitSystem.TraitDescriptor,
+        Assembly-CSharp],[com.CompanyR.FrameworkR.TraitSystem.TraitDescriptor, Assembly-CSharp]],
+        Unity.CollabProxy.Editor
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[com.CompanyR.FrameworkR.TraitSystem.TraitDescriptor,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: m_OnAdditionInvokeEffects
+      Entry: 7
+      Data: 2|Unity.Cloud.Collaborate.Common.SerializableDictionary`2[[com.CompanyR.FrameworkR.TraitSystem.TraitDescriptor,
+        Assembly-CSharp],[com.CompanyR.FrameworkR.TraitSystem.TraitEffect, Assembly-CSharp]],
+        Unity.CollabProxy.Editor
+    - Name: comparer
+      Entry: 9
+      Data: 1
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: m_OnInvokeEffects
+      Entry: 7
+      Data: 3|Unity.Cloud.Collaborate.Common.SerializableDictionary`2[[com.CompanyR.FrameworkR.TraitSystem.TraitDescriptor,
+        Assembly-CSharp],[com.CompanyR.FrameworkR.TraitSystem.TraitEffect, Assembly-CSharp]],
+        Unity.CollabProxy.Editor
+    - Name: comparer
+      Entry: 9
+      Data: 1
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  m_IDName: GlobalTrait

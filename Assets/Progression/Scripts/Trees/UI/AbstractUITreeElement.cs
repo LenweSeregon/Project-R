@@ -4,7 +4,7 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 	using System.Collections.Generic;
 	using UnityEngine;
 
-	public abstract class AbstractUITreeElement : MonoBehaviour
+	public abstract class AbstractUITreeElement : MonoBehaviour, IUIElement<XPTreeElement>
 	{
 		public XPTreeElement m_Element;
 

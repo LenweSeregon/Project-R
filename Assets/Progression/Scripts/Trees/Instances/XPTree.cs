@@ -4,7 +4,7 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 	using System.Collections.Generic;
 	using UnityEngine;
 
-	public class XPTree
+	public class XPTree : AbstractXPComponent
 	{
 		private SkillProgressionController m_Controller;
 		private XPTreeDescriptor m_Descriptor;

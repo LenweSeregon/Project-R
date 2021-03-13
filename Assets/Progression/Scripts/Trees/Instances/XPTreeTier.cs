@@ -4,7 +4,7 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 	using System.Collections.Generic;
 	using UnityEngine;
 
-	public class XPTreeTier
+	public class XPTreeTier : AbstractXPComponent
 	{
 		private List<XPTreeElement> m_Elements = new List<XPTreeElement>();
 		private XPTree m_Tree;

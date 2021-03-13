@@ -22,6 +22,7 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 				if (m_AffectedOnInvokeTraits == null)
 				{
 					m_AffectedOnInvokeTraits = new HashSet<TraitDescriptor>(m_OnInvokeEffects.Keys);
+					m_AffectedOnInvokeTraits.Add(this);
 				}
 				return m_AffectedOnInvokeTraits;
 
@@ -45,11 +46,7 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 			{
 				if (m_OnInvokeEffects.ContainsKey(entry.Key))
 				{
-					m_OnInvokeEffects[entry.Key].InvokeEffect(owner);
-					foreach (TraitsController controller in entry.Value)
-					{
-						m_OnInvokeEffects[entry.Key].InvokeEffect(controller);
-					}
+					m_OnInvokeEffects[entry.Key].InvokeEffect(owner, entry.Value);
 				}
 			}
 		}

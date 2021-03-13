@@ -77,14 +77,11 @@ public class DemoTraits : MonoBehaviour
 
 	private void UpdateInfo()
 	{
-		if(m_SelectedController == null)
-		{
-			m_SelectedControllerText.text = "";
-			m_TraitText.text = "";
-			m_ComboText.text = "";
-			m_EffectText.text = "";
-		}
-		else
+		m_SelectedControllerText.text = "";
+		m_TraitText.text = "";
+		m_ComboText.text = "";
+		m_EffectText.text = "";
+		if (m_SelectedController != null)
 		{
 			m_SelectedControllerText.text = m_SelectedController.ControllerName;
 			foreach (TraitInstance trait in m_SelectedController.Traits)

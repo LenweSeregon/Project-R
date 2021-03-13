@@ -4,16 +4,16 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 	using System.Collections.Generic;
 	using UnityEngine;
 
-	public abstract class AbstractUITree : MonoBehaviour
+	public abstract class AbstractUITree : MonoBehaviour, IUIElement<XPTree>
 	{
 		protected XPTree m_Tree;
 
-		public virtual void InitTree(XPTree tree)
+		public virtual void InitElement(XPTree tree)
 		{
 			m_Tree = tree;
 		}
 
-		public virtual void UpdateTree()
+		public virtual void UpdateElement()
 		{
 
 		}

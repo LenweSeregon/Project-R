@@ -26,12 +26,12 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 			foreach (XPTree tree in skillController.Trees)
 			{
 				UITree uiTree = Instantiate(m_TreePrefab, m_TreesContainer);
-				uiTree.InitTree(tree);
+				uiTree.InitElement(tree);
 
 				foreach (XPTreeTier tier in tree.Tiers)
 				{
 					UITier uiTier = Instantiate(m_TierPrefab, uiTree.TiersContainer.transform);
-					uiTier.InitTier(tier);
+					uiTier.InitElement(tier);
 					foreach (XPTreeElement element in tier.Elements)
 					{
 						UITreeElement uiElement = Instantiate(m_ElementPrefab, uiTier.transform);

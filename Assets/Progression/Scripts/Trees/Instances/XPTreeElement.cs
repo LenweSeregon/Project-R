@@ -6,7 +6,7 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
     using UnityEngine.Events;
     using UnityEngine.UI;
 
-	public class XPTreeElement
+	public class XPTreeElement : AbstractXPComponent
 	{
 		protected XPTreeElementDescriptor m_Descriptor;
 		protected XPTreeTier m_Tier;
@@ -71,6 +71,8 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 				OnLevelIncreased();
 			}
 		}
+
+		public void NotifyUnlockElement(XPTreeElement element) { }
 
 		public void DecreaseLevel()
 		{

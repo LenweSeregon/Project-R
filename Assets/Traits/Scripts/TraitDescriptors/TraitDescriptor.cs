@@ -25,7 +25,7 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 		//[SerializeField] protected List<TraitDescriptor> m_AffectedOnAdditionTraits = new List<TraitDescriptor>();
 
 		protected HashSet<TraitDescriptor> m_AffectedTraits;
-		protected List<TraitDescriptor> m_TraitsCombo;
+		protected List<TraitDescriptor> m_TraitsCombo = null;
 		#endregion Fields
 
 		#region Properties
@@ -34,7 +34,7 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 		{
 			get
 			{
-				if(m_TraitsCombo == null)
+				if(m_TraitsCombo == null || m_TraitsCombo.Count != m_ComboEffects.Count)
 				{
 					m_TraitsCombo = new List<TraitDescriptor>(m_ComboEffects.Keys);
 				}
@@ -48,6 +48,7 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 				if (m_AffectedTraits == null)
 				{
 					m_AffectedTraits = new HashSet<TraitDescriptor>(m_OnAdditionInvokeEffects.Keys);
+					m_AffectedTraits.Add(this);
 				}
 				return m_AffectedTraits;
 
@@ -80,11 +81,7 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 			{
 				if (m_OnAdditionInvokeEffects.ContainsKey(entry.Key))
 				{
-					m_OnAdditionInvokeEffects[entry.Key].InvokeEffect(owner);
-					foreach (TraitsController controller in entry.Value)
-					{
-						m_OnAdditionInvokeEffects[entry.Key].InvokeEffect(controller);
-					}
+					m_OnAdditionInvokeEffects[entry.Key].InvokeEffect(owner, entry.Value);
 				}
 			}
 		}
@@ -107,11 +104,7 @@ namespace com.CompanyR.FrameworkR.TraitSystem
 			{
 				if (m_OnAdditionInvokeEffects.ContainsKey(entry.Key))
 				{
-					m_OnAdditionInvokeEffects[entry.Key].InvokeEffect(owner);
-					foreach (TraitsController controller in entry.Value)
-					{
-						m_OnAdditionInvokeEffects[entry.Key].RevokeEffect(controller);
-					}
+					m_OnAdditionInvokeEffects[entry.Key].RevokeEffect(owner, entry.Value);
 				}
 			}
 		}

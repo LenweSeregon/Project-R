@@ -2802,7 +2802,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TraitsHandler: {fileID: 11400000, guid: 4f6cf30320ab0154a8c2bba475233afa, type: 2}
-  m_TraitToAdd: {fileID: 0}
+  m_TraitToAdd: {fileID: 11400000, guid: 80e5395ae7375f14ab90e6c41db5562c, type: 2}
   m_ControllerInputField: {fileID: 1663163960}
   m_TraitInputField: {fileID: 1485175144}
   m_SelectedControllerText: {fileID: 1963764649}
@@ -4000,7 +4000,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1513208715}
         m_TargetAssemblyTypeName: DemoTraits, Assembly-CSharp
-        m_MethodName: RemoveController
+        m_MethodName: RemoveTrait
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -9,13 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4711407d341e38944a5bcf0ffe643194, type: 3}
-  m_Name: InteractiveTrait
+  m_Script: {fileID: 11500000, guid: 3af54816b515b334aa702774a3b0adb3, type: 3}
+  m_Name: ComboPassiveTrait
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 11400000}
+    - {fileID: 11400000, guid: 615a9dd0e1cc04147b4422216a6b3402, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -52,28 +54,23 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: m_OnInvokeEffects
-      Entry: 7
-      Data: 3|Unity.Cloud.Collaborate.Common.SerializableDictionary`2[[com.CompanyR.FrameworkR.TraitSystem.TraitDescriptor,
-        Assembly-CSharp],[com.CompanyR.FrameworkR.TraitSystem.TraitEffect, Assembly-CSharp]],
-        Unity.CollabProxy.Editor
-    - Name: comparer
-      Entry: 9
       Data: 1
     - Name: 
-      Entry: 12
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
       Data: 0
+    - Name: $v
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
-  m_IDName: InteractiveTrait
+  m_IDName: Combo Trait

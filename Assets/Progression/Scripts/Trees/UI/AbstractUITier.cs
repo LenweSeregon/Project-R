@@ -4,16 +4,16 @@ namespace com.CompanyR.FrameworkR.ProgressSystem
 	using System.Collections.Generic;
 	using UnityEngine;
 
-	public abstract class AbstractUITier : MonoBehaviour
+	public abstract class AbstractUITier : MonoBehaviour, IUIElement<XPTreeTier>
 	{
 		protected XPTreeTier m_Tier;
 
-		public virtual void InitTier(XPTreeTier tier)
+		public virtual void InitElement(XPTreeTier tier)
 		{
 			m_Tier = tier;
 		}
 
-		public virtual void UpdateTier()
+		public virtual void UpdateElement()
 		{
 
 		}
